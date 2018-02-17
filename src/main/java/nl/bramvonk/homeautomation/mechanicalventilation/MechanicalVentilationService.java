@@ -9,8 +9,7 @@ public class MechanicalVentilationService {
 
     private static final Logger logger = LoggerFactory.getLogger(MechanicalVentilationService.class);
 
-    // temporarily save state in a static
-    private static MechanicalVentilationSetting currentSetting = null;
+    private MechanicalVentilationSetting currentSetting = null;
 
     public MechanicalVentilationSetting getSetting() {
         return currentSetting;
