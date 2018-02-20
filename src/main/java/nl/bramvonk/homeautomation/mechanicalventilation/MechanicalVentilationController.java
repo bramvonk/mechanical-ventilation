@@ -21,14 +21,14 @@ public class MechanicalVentilationController {
     }
 
     @GetMapping(value = "/mechanicalventilation")
-    public MechnicalVentilation getData() {
-        MechnicalVentilation mechanicalVentilation = new MechnicalVentilation();
+    public MechanicalVentilation getData() {
+        MechanicalVentilation mechanicalVentilation = new MechanicalVentilation();
         mechanicalVentilation.setSetting(service.getSetting());
         return mechanicalVentilation;
     }
 
     @PutMapping(value = "/mechanicalventilation")
-    public MechnicalVentilation putSetting(@RequestBody MechnicalVentilation mechanicalVentilation) {
+    public MechanicalVentilation putSetting(@RequestBody MechanicalVentilation mechanicalVentilation) {
         logger.info("PUT received with new mechanical ventilation setting {}", mechanicalVentilation.getSetting());
         service.setSetting(mechanicalVentilation.getSetting());
         return mechanicalVentilation;

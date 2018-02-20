@@ -39,7 +39,7 @@ public class MechanicalVentilationControllerWebMockTest {
         // test put
         this.mockMvc
                 .perform(put("/mechanicalventilation")
-                        .content(new ObjectMapper().writeValueAsString(new MechnicalVentilation(MechanicalVentilationSetting.HIGH)))
+                        .content(new ObjectMapper().writeValueAsString(new MechanicalVentilation(MechanicalVentilationSetting.HIGH)))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(status().isOk()).andExpect(content().json("{setting:'HIGH'}"));
         verify(service, times(1)).setSetting(MechanicalVentilationSetting.HIGH);

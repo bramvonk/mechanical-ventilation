@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MechnicalVentilation {
+public class MechanicalVentilation {
     private MechanicalVentilationSetting setting;
 }
