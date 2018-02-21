@@ -12,20 +12,17 @@ public class MechanicalVentilationService {
 
     private MechanicalVentilationRepository repository;
 
-    private MechanicalVentilationSetting currentSetting = null;
-
     @Autowired
     public MechanicalVentilationService(MechanicalVentilationRepository repository) {
         this.repository = repository;
     }
 
     public MechanicalVentilationSetting getSetting() {
-        return currentSetting;
+        return repository.getMechanicalVentilationState();
     }
 
     public void setSetting(MechanicalVentilationSetting newSetting) {
         repository.setMechanicalVentilationState(newSetting);
-        currentSetting = newSetting;
         logger.info("Set mechanical ventilation to setting " + newSetting);
     }
 }

@@ -95,6 +95,16 @@ public class MechanicalVentilationRepository {
         secondRelay.setShutdownOptions(true, RELAY_OFF);
     }
 
+    public MechanicalVentilationSetting getMechanicalVentilationState() {
+        if (firstRelay.getState() == RELAY_ON) {
+            return MechanicalVentilationSetting.LOW;
+        } else if (secondRelay.getState() == RELAY_OFF) {
+            return MechanicalVentilationSetting.MEDIUM;
+        } else {
+            return MechanicalVentilationSetting.HIGH;
+        }
+    }
+
     public void setMechanicalVentilationState(MechanicalVentilationSetting newSetting) {
         switch (newSetting) {
         case LOW:
