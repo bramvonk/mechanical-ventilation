@@ -21,7 +21,7 @@ public class MechanicalVentilationRepository {
 
     public MechanicalVentilationRepository() {
         firstRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "FirstRelay", PinState.HIGH);
-        secondRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "FirstRelay", PinState.HIGH);
+        secondRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "SecondRelay", PinState.HIGH);
 
         firstRelay.setShutdownOptions(true, PinState.HIGH);
         secondRelay.setShutdownOptions(true, PinState.HIGH);
