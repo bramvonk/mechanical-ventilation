@@ -20,27 +20,27 @@ public class MechanicalVentilationRepository {
     private GpioPinDigitalOutput secondRelay;
 
     public MechanicalVentilationRepository() {
-        firstRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, "FirstRelay", PinState.LOW);
-        secondRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16, "FirstRelay", PinState.LOW);
+        firstRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "FirstRelay", PinState.HIGH);
+        secondRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "FirstRelay", PinState.HIGH);
 
-        firstRelay.setShutdownOptions(true, PinState.LOW);
-        secondRelay.setShutdownOptions(true, PinState.LOW);
+        firstRelay.setShutdownOptions(true, PinState.HIGH);
+        secondRelay.setShutdownOptions(true, PinState.HIGH);
     }
 
     public void setMechanicalVentilationState(MechanicalVentilationSetting newSetting) {
         switch (newSetting) {
         case LOW:
             // second relay does not matter
-            firstRelay.setState(PinState.HIGH);
+            firstRelay.setState(PinState.LOW);
             break;
 
         case MEDIUM:
-            secondRelay.setState(PinState.LOW);
+            secondRelay.setState(PinState.HIGH);
             firstRelay.setState(PinState.HIGH);
             break;
 
         case HIGH:
-            secondRelay.setState(PinState.HIGH);
+            secondRelay.setState(PinState.LOW);
             firstRelay.setState(PinState.HIGH);
             break;
         }
