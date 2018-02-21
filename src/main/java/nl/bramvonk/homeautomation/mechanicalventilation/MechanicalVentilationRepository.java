@@ -69,11 +69,14 @@ public class MechanicalVentilationRepository {
      * <li>relay 1 unset and relay 2 set (resp NC and NO): only L1 is connected, so the same as fan speed 3.
      * </ul>
      * 
-     * When the 3-way-switch is set to speed 1, both L3 and L1 are not connected, so that is still speed 1 (overriding
-     * any relay settings). When the 3-way-switch is set to speed 3, L1 is connected, so that is speed 3 (overriding any
-     * relay setting). Note that when relay 2 is set (NO) and relay 1 is unset (NC), current can flow back to the 3 way
-     * switch port 2. This port is however not connected (see premise at the start if this paragraph), so that is no
-     * problem.
+     * Note that:
+     * <ul>
+     * <li>When the 3-way-switch is set to speed 1, both L3 and L1 are not connected, so that is still speed 1
+     * (overriding any relay settings).
+     * <li>When the 3-way-switch is set to speed 3, L1 is connected, so that is speed 3 (overriding any relay setting).
+     * Note that when relay 2 is set (NO) and relay 1 is unset (NC), current can flow back to the 3 way switch port 2.
+     * This port is however not connected (see premise at the start if this paragraph), so that is no problem.
+     * </ul>
      */
 
     private static final PinState RELAY_OFF = PinState.HIGH;
@@ -100,11 +103,16 @@ public class MechanicalVentilationRepository {
             break;
 
         case MEDIUM:
+            // set the second relay first, as that means the end state (for the fan box) will only change once: either
+            // the first relay already is already OFF, then the first line might change the end result, but the second
+            // line of code won't, or the first relay is ON, not connecting the second relay, so the end state is only
+            // set after the second line of code.
             secondRelay.setState(RELAY_OFF);
             firstRelay.setState(RELAY_OFF);
             break;
 
         case HIGH:
+            // see above
             secondRelay.setState(RELAY_ON);
             firstRelay.setState(RELAY_OFF);
             break;
