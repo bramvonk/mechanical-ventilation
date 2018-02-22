@@ -1,0 +1,19 @@
+#see https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
+#TODO 
+# - copy file to /etc/systemd/system, chown and chgrp root
+# - update ExecStart
+# - systemctl enable mechanicalventilation.service
+# - systemctl start mechanicalventilation
+
+[Unit]
+Description=mechanicalventilation
+After=syslog.target
+
+[Service]
+#must be root because pi4j requires it
+User=root
+ExecStart=/var/myapp/mechanicalventilation-0.0.1.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
