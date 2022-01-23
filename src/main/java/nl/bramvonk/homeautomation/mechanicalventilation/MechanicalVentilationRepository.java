@@ -88,8 +88,9 @@ public class MechanicalVentilationRepository {
     private GpioPinDigitalOutput secondRelay;
 
     public MechanicalVentilationRepository() {
-        firstRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "FirstRelay", RELAY_OFF);
-        secondRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, "SecondRelay", RELAY_OFF);
+        // note that GPIO numbering is that of PI4J/WiringPi. See here: https://pi4j.com/1.2/pins/model-b-plus.html
+        firstRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05, "FirstRelay", RELAY_OFF);
+        secondRelay = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06, "SecondRelay", RELAY_OFF);
 
         firstRelay.setShutdownOptions(true, RELAY_OFF);
         secondRelay.setShutdownOptions(true, RELAY_OFF);
@@ -114,7 +115,7 @@ public class MechanicalVentilationRepository {
 
         case MEDIUM:
             // set the second relay first, as that means the end state (for the fan box) will only change once: either
-            // the first relay already is already OFF, then the first line might change the end result, but the second
+            // the first relay is already OFF, then the first line might change the end result, but the second
             // line of code won't, or the first relay is ON, not connecting the second relay, so the end state is only
             // set after the second line of code.
             secondRelay.setState(RELAY_OFF);
