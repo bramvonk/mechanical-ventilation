@@ -21,6 +21,6 @@ First build it using:
 Then make it a service: see ```mechanicalventilation.service.example``` .
 
 ## Usage
-curl -H 'Content-Type: application/json' -X PUT -d '{"setting":"LOW"}' http://localhost:8080/mechanicalventilation
-curl -H 'Content-Type: application/json' -X PUT -d '{"setting":"MEDIUM"}' http://localhost:8080/mechanicalventilation
-curl -H 'Content-Type: application/json' -X PUT -d '{"setting":"HIGH"}' http://localhost:8080/mechanicalventilation
+    curl -H 'Content-Type: application/json' -X PUT -d '{"setting":"LOW"}' http://localhost:8080/mechanicalventilation
+    curl -H 'Content-Type: application/json' -X PUT -d '{"setting":"MEDIUM"}' http://localhost:8080/mechanicalventilation
+    curl -H 'Content-Type: application/json' -X PUT -d '{"setting":"HIGH"}' http://localhost:8080/mechanicalventilation
